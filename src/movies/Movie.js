@@ -8,14 +8,13 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 100%;
 `;
 
 const Image = styled.img`
-  width: 100%;
+  width: 350px;
 
   @media only screen and (max-width: 600px) {
-    width: 100%;
+    width: 260px;
   }
 `;
 

@@ -1,13 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components/macro";
 import { useAsync } from "react-use";
-
-import GridList from "@material-ui/core/GridList";
-import GridListTile from "@material-ui/core/GridListTile";
-import GridListTileBar from "@material-ui/core/GridListTileBar";
-import IconButton from "@material-ui/core/IconButton";
 import CircularProgress from "@material-ui/core/CircularProgress";
-
 import { discoverMovies } from "../services/api";
 import { Movie } from "../movies/Movie";
 
@@ -17,7 +11,14 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   margin-bottom: 10px;
-  min-height: 350px;
+  width: 100%;
+`;
+
+const GridList = styled.ul`
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: scroll;
+  width: 100%;
 `;
 
 const Header = styled.div`
@@ -30,6 +31,15 @@ const ScrollableList = styled.div`
   flex-wrap: wrap;
   justify-content: space-around;
   overflow: hidden;
+  width: 100%;
+`;
+
+const ListTile = styled.li`
+  list-style: none;
+  margin-right: 10px;
+
+  @media only screen and (max-width: 600px) {
+  }
 `;
 
 export const Genre = ({ genre }) => {
@@ -64,14 +74,11 @@ export const Genre = ({ genre }) => {
       )}
       {!loading && movies.length > 0 && (
         <ScrollableList>
-          <GridList cols={2.5} style={{ flexWrap: "nowrap" }}>
+          <GridList cols={2.5}>
             {movies.map((movie) => (
-              <GridListTile
-                key={movie.id}
-                style={{ height: "auto", width: "20%" }}
-              >
+              <ListTile key={movie.id}>
                 <Movie movie={movie} />
-              </GridListTile>
+              </ListTile>
             ))}
           </GridList>
         </ScrollableList>

@@ -6,12 +6,11 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 50px;
+  padding: 50px 0;
   min-width: 400px;
 
   @media only screen and (max-width: 600px) {
     min-width: 100%;
-    padding: 50px 5px;
   }
 `;
 

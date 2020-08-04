@@ -4,7 +4,11 @@ import { genres } from "../services/genres";
 import { Genre } from "./Genre";
 
 const Container = styled.div`
-  padding: 50px;
+  padding: 50px 0;
+  width: 100%;
+
+  @media only screen and (max-width: 600px) {
+  }
 `;
 
 export const DiscoverMovies = () => (
