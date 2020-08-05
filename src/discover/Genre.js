@@ -3,6 +3,7 @@ import styled from "styled-components/macro";
 import { useAsync } from "react-use";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import { discoverMovies } from "../services/api";
+import { getCache, setCache } from "../services/cache";
 import { Movie } from "../movies/Movie";
 
 const Container = styled.div`
@@ -50,6 +51,14 @@ export const Genre = ({ genre }) => {
   const genreId = genre[genreName];
 
   useAsync(async () => {
+    const cacheResults = getCache(genreName);
+
+    if (cacheResults && cacheResults.length) {
+      setMovies(cacheResults);
+      setLoading(false);
+      return;
+    }
+
     try {
       const response = await discoverMovies(genreId);
 
@@ -57,6 +66,7 @@ export const Genre = ({ genre }) => {
         // handle error
       }
 
+      setCache(genreName, response.data.results);
       setMovies(response.data.results);
       setLoading(false);
     } catch (e) {
