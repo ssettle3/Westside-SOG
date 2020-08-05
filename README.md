@@ -1,7 +1,8 @@
 # Westside's Screen on the Green
 
 ## App Description
-Simple App for the cool people on Ellen Street to allow users to search, browse, recommend and vote on recommended movies to watch for our Screen on the Green events. :) 
+
+Simple App for the cool people on Ellen Street to allow users to search, browse, recommend and vote on recommended movies to watch for our Screen on the Green events. :)
 
 ## Running Locally
 
@@ -23,5 +24,10 @@ REACT_APP_TMDB_API_KEY=
 REACT_APP_TMDB_POSTER_URL=
 ```
 
-## LICENSE 
+## Privacy Policy
+
+[Policy Link](https://www.termsfeed.com/live/30e170a1-1378-4ab7-997e-fece3f161242)
+
+## LICENSE
+
 MIT
