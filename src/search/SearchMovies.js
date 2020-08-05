@@ -1,6 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components/macro";
+import CircularProgress from "@material-ui/core/CircularProgress";
+import { debounce } from "lodash";
 import { Input } from "../input/Input";
+import { Movies } from "../movies/Movies";
+import { searchMovies } from "../services/api";
 
 const Container = styled.div`
   display: flex;
@@ -14,14 +18,43 @@ const Container = styled.div`
   }
 `;
 
-export const SearchMovies = ({ performSearch }) => {
+export const SearchMovies = () => {
+  const [loading, setLoading] = useState(false);
+  const [results, setResults] = useState([]);
+
+  const fetchMovies = debounce(async (text) => {
+    if (!text) return;
+    setLoading(true);
+
+    const response = await searchMovies(text);
+
+    if (response.status !== 200) {
+      return; // TODO: handle error
+    }
+
+    const filteredMovies = response.data.results.filter(
+      (result) => !!result.poster_path
+    );
+
+    setResults(filteredMovies);
+    setLoading(false);
+  }, 1000);
+
   return (
     <Container>
       <Input
         placeholder="Thor Ragnarok"
         label="Search movies by name"
-        onChange={performSearch}
+        onChange={fetchMovies}
       />
+
+      {loading && (
+        <div>
+          <CircularProgress />
+        </div>
+      )}
+
+      {results.length > 0 && <Movies movies={results} />}
     </Container>
   );
 };
