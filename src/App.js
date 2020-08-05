@@ -11,6 +11,7 @@ import { ThemeProvider } from "@material-ui/core/styles";
 
 import "./App.css";
 import { Header } from "./header/Header";
+import { Footer } from "./footer/Footer";
 import { FindMovies } from "./find/FindMovies";
 import { RecommendedMovies } from "./recommendations/RecommendedMovies";
 import { About } from "./about/About";
@@ -33,6 +34,7 @@ const Container = withRouter(({ history }) => (
         </Route>
         <Redirect from="*" to="/" />
       </Switch>
+      <Footer />
     </ThemeProvider>
   </HistoryContextProvider>
 ));

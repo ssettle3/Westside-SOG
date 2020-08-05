@@ -19,6 +19,10 @@ const Content = styled.div`
 
 const Icons = styled.div`
   display: flex;
+
+  @media only screen and (max-width: 600px) {
+    display: none;
+  }
 `;
 
 export const Header = () => {
