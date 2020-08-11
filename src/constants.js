@@ -5,3 +5,5 @@ export const PARSE_KEY = process.env.REACT_APP_PARSE_KEY;
 export const TMDB_API_KEY = process.env.REACT_APP_TMDB_API_KEY;
 export const TMDB_API_URL = process.env.REACT_APP_TMDB_API_URL;
 export const TMDB_IMAGE_URL = process.env.REACT_APP_TMDB_POSTER_URL;
+
+export const FACEBOOK_APP_ID = process.env.REACT_APP_FACEBOOK_APP_ID;

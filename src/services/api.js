@@ -10,7 +10,3 @@ export const discoverMovies = (genreId) =>
   axios.get(
     `${TMDB_API_URL}/discover/movie?api_key=${TMDB_API_KEY}&with_genres=${genreId}&language=en-US`
   );
-
-export const getMovieDetail = () => {};
-
-export const makeRecommendation = () => {};

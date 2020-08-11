@@ -7,13 +7,27 @@ const Wrapper = styled.div`
   padding-left: ${(props) => props.padl};
 `;
 
-export const Icon = ({ icon, tooltip, padl }) => {
+const Image = styled.img`
+  border-radius: 50%;
+  width: 25px;
+`;
+
+export const Icon = ({ icon, tooltip, padl, src }) => {
   const Icon = icon;
+
   return (
     <Wrapper padl={padl}>
-      <Tooltip title={tooltip}>
-        <Icon />
-      </Tooltip>
+      {src && (
+        <Tooltip title={tooltip}>
+          <Image alt={src} src={src} width="40px" />
+        </Tooltip>
+      )}
+
+      {icon && !src && (
+        <Tooltip title={tooltip}>
+          <Icon />
+        </Tooltip>
+      )}
     </Wrapper>
   );
 };

@@ -6,8 +6,10 @@ import Toolbar from "@material-ui/core/Toolbar";
 import HelpIcon from "@material-ui/icons/Help";
 import PollIcon from "@material-ui/icons/Poll";
 import SearchIcon from "@material-ui/icons/Search";
+import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import { Link } from "react-router-dom";
 import { Icon } from "../icon/Icon";
+import { hydratedCurrentUser } from "../services/parse";
 
 const Container = styled.div`
   display: none;
@@ -42,6 +44,14 @@ export const Footer = () => {
           </Link>
           <Link to="/about">
             <Icon icon={HelpIcon} tooltip="What is this?" />
+          </Link>
+          <Link to="/profile">
+            <Icon
+              alt="user-pic"
+              src={hydratedCurrentUser().picture}
+              icon={AccountCircleIcon}
+              tooltip="Profile"
+            />
           </Link>
         </Toolbar>
       </AppBar>
