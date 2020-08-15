@@ -1,9 +1,12 @@
 import React, { useState } from "react";
+import { useAsync } from "react-use";
+import { useSnackbar } from "notistack";
 import styled from "styled-components/macro";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
 import Button from "@material-ui/core/Button";
 import { SearchMovies } from "../search/SearchMovies";
 import { DiscoverMovies } from "../discover/DiscoverMovies";
+import { getUserRecommendations, makeRecommendation } from "../services/parse";
 
 const Container = styled.div`
   display: flex;
@@ -15,10 +18,27 @@ const Container = styled.div`
 `;
 
 export const FindMovies = () => {
+  const { enqueueSnackbar } = useSnackbar();
+
   const [browseSelection, setBrowseSelection] = useState("search");
+  const [userRecommendations, setUserRecommendations] = useState([]);
 
   const isActive = (selection) =>
     browseSelection === selection ? "contained" : "";
+
+  useAsync(async () => {
+    const userRecs = await getUserRecommendations();
+    setUserRecommendations(userRecs);
+  }, []);
+
+  const recommendationCallback = (message, variant, movie) => {
+    enqueueSnackbar(message, { variant });
+    setUserRecommendations((recs) => [...recs, movie]);
+  };
+
+  const recommendMovie = (movie) => {
+    makeRecommendation(movie, recommendationCallback);
+  };
 
   return (
     <Container>
@@ -37,8 +57,18 @@ export const FindMovies = () => {
         </Button>
       </ButtonGroup>
 
-      {browseSelection === "search" && <SearchMovies />}
-      {browseSelection === "genre" && <DiscoverMovies />}
+      {browseSelection === "search" && (
+        <SearchMovies
+          userRecommendations={userRecommendations}
+          recommendMovie={recommendMovie}
+        />
+      )}
+      {browseSelection === "genre" && (
+        <DiscoverMovies
+          userRecommendations={userRecommendations}
+          recommendMovie={recommendMovie}
+        />
+      )}
     </Container>
   );
 };

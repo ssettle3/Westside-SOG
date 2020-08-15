@@ -11,10 +11,15 @@ const Container = styled.div`
   }
 `;
 
-export const DiscoverMovies = () => (
+export const DiscoverMovies = ({ userRecommendations, recommendMovie }) => (
   <Container>
     {genres.map((genre, index) => (
-      <Genre key={index} genre={genre} />
+      <Genre
+        key={index}
+        genre={genre}
+        userRecommendations={userRecommendations}
+        recommendMovie={recommendMovie}
+      />
     ))}
   </Container>
 );

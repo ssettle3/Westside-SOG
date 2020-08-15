@@ -43,12 +43,15 @@ const ListTile = styled.li`
   }
 `;
 
-export const Genre = ({ genre }) => {
+export const Genre = ({ genre, userRecommendations, recommendMovie }) => {
   const [loading, setLoading] = useState(true);
   const [movies, setMovies] = useState([]);
 
   const genreName = Object.keys(genre)[0];
   const genreId = genre[genreName];
+
+  const isRecommended = (movieId) =>
+    userRecommendations.find((rec) => rec.movie_id === movieId);
 
   useAsync(async () => {
     const cacheResults = getCache(genreName);
@@ -87,7 +90,11 @@ export const Genre = ({ genre }) => {
           <GridList cols={2.5}>
             {movies.map((movie) => (
               <ListTile key={movie.id}>
-                <Movie movie={movie} />
+                <Movie
+                  movie={movie}
+                  recommendMovie={recommendMovie}
+                  isRecommended={isRecommended(movie.id)}
+                />
               </ListTile>
             ))}
           </GridList>

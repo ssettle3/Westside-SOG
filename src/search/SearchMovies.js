@@ -19,7 +19,7 @@ const Container = styled.div`
   }
 `;
 
-export const SearchMovies = () => {
+export const SearchMovies = ({ userRecommendations, recommendMovie }) => {
   const [loading, setLoading] = useState(false);
   const [results, setResults] = useState([]);
 
@@ -51,7 +51,13 @@ export const SearchMovies = () => {
 
       {loading && <Loading />}
 
-      {results.length > 0 && <Movies movies={results} />}
+      {results.length > 0 && (
+        <Movies
+          movies={results}
+          userRecommendations={userRecommendations}
+          recommendMovie={recommendMovie}
+        />
+      )}
     </Container>
   );
 };

@@ -7,10 +7,20 @@ const Container = styled.div`
   display: grid;
 `;
 
-export const Movies = ({ movies }) => (
-  <Container>
-    {movies.map((movie) => (
-      <Movie key={movie.id} movie={movie} />
-    ))}
-  </Container>
-);
+export const Movies = ({ movies, userRecommendations, recommendMovie }) => {
+  const isRecommended = (movieId) =>
+    !!userRecommendations.find((rec) => rec.movie_id === movieId);
+
+  return (
+    <Container>
+      {movies.map((movie) => (
+        <Movie
+          key={movie.id}
+          movie={movie}
+          isRecommended={isRecommended(movie.id)}
+          recommendMovie={recommendMovie}
+        />
+      ))}
+    </Container>
+  );
+};
