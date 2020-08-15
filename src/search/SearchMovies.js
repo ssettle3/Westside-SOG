@@ -5,6 +5,7 @@ import { debounce } from "lodash";
 import { Input } from "../input/Input";
 import { Movies } from "../movies/Movies";
 import { searchMovies } from "../services/api";
+import { Loading } from "../loading/Loading";
 
 const Container = styled.div`
   display: flex;
@@ -48,11 +49,7 @@ export const SearchMovies = () => {
         onChange={fetchMovies}
       />
 
-      {loading && (
-        <div>
-          <CircularProgress />
-        </div>
-      )}
+      {loading && <Loading />}
 
       {results.length > 0 && <Movies movies={results} />}
     </Container>

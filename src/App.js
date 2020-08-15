@@ -10,6 +10,7 @@ import { AuthenticatedContainer } from "./containers/AuthenticatedContainer";
 import { UnauthenticatedContainer } from "./containers/UnauthenticatedContainer";
 import { theme } from "./theme";
 import { initializeFacebook, facbookLogin } from "./services/facebook";
+import { Loading } from "./loading/Loading";
 import { initializeParse } from "./services/parse";
 
 const App = () => {
@@ -73,7 +74,7 @@ const App = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      {loading && <div>Loading</div>}
+      {loading && <Loading />}
       {isAuthenticated && !loading && (
         <AuthenticatedContainer logout={logOut} />
       )}
