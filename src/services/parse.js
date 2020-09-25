@@ -24,6 +24,7 @@ export const getUserRecommendations = async () => {
 
 export const getAllRecommendations = async () => {
   const query = new Parse.Query("Recommendation");
+  query.include("user");
   const results = await query.find();
 
   return results.map((result) => result.toJSON());

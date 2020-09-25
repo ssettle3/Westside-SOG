@@ -40,13 +40,15 @@ export const Movie = ({ movie, recommendMovie, isRecommended }) => (
   <Container>
     <MovieWrapper>
       <Image src={`${TMDB_IMAGE_URL}/${movie.poster_path}`} />
-      <ThumbWrapper onClick={() => recommendMovie(movie)}>
-        {isRecommended ? (
+      {isRecommended ? (
+        <ThumbWrapper onClick={() => recommendMovie(movie)}>
           <ThumbUpIcon color="primary" fontSize="large" />
-        ) : (
+        </ThumbWrapper>
+      ) : (
+        <ThumbWrapper onClick={() => recommendMovie(movie)}>
           <ThumbUpAltOutlinedIcon fontSize="large" />
-        )}
-      </ThumbWrapper>
+        </ThumbWrapper>
+      )}
     </MovieWrapper>
   </Container>
 );

@@ -37,7 +37,7 @@ const ScrollableList = styled.div`
 
 const ListTile = styled.li`
   list-style: none;
-  margin-right: 10px;
+  margin-right: 1px;
 
   @media only screen and (max-width: 600px) {
   }
